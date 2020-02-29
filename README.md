@@ -3,9 +3,8 @@
 - Update the MongoConnectionString in the appsettings.json file to be the correct connection string
 - Then do `dotnet build` 
 - After that is done, in the terminal hit `dotnet run`
-- - If the browswer window doesn't appear right off the bat, go to http://localhost:5000/ I decided with the http route as cloning it on my other machine
-    results in socket exceptions due to access permissions, so this should be less prone to error. 
---  If https is desired, then just update the following line to Properties/launchSettings.json to be 
+- - If the browswer window doesn't appear right off the bat, go to http://localhost:5000/ I decided to go with the http route as cloning it on my other machine results in socket exceptions due to access permissions, so this should be less prone to error. 
+ - If https is desired, then just update the following line in Properties/launchSettings.json to be 
     `"applicationUrl": "https://localhost:5001;http://localhost:5000""
 
 # How To Use The App
