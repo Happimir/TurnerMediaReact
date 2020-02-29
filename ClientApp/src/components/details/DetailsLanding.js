@@ -22,6 +22,7 @@ export class DetailsLanding extends Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({
+                    viewParticipants: false,
                     showDetail: true,
                     detail: data
                 });
