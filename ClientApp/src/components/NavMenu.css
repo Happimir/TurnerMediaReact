@@ -1,0 +1,28 @@
+﻿a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.detailsButton {
+    float: right !important;
+    background-image: linear-gradient( 135deg, rgb(24, 42, 115) 0%, rgb(33, 138, 174) 69%, r gb(32, 167, 172) 89% ) !important;
+    color: black !important;
+}
+
+.marginedGrid {
+    margin-left: 20px !important
+}
