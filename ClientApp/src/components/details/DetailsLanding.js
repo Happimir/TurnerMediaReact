@@ -80,7 +80,7 @@ export class DetailsLanding extends Component {
                                     <Item.Content>
                                         <Item.Header>{detail.titleName}</Item.Header>
                                         <Item.Meta>Year: {detail.releaseYear}</Item.Meta>
-                                        <Item.Meta>Genres: {detail.keyGenres ? detail.keyGenres.join() : detail.genres.join()}</Item.Meta>
+                                        <Item.Meta className="truncate">Genres: {detail.keyGenres ? detail.keyGenres.join() : detail.genres.join()}</Item.Meta>
                                         <Item.Extra>
                                             <button className="ui button modalButton" id={detail._id} onClick={this.displayParticipants.bind(this)}> View Participants</button>
                                             <button className="ui button detailsButton" id={detail._id} onClick={this.loadDetails.bind(this)}> Details</button>
