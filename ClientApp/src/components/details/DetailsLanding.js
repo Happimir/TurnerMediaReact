@@ -2,6 +2,7 @@
 import { Grid, Segment, Item } from 'semantic-ui-react';
 import { DetailsItem } from './detailsItem';
 import { Participants } from './participants/participants';
+import { v4 as uuidv4 } from 'uuid';
 
 export class DetailsLanding extends Component {
     constructor(props) {
@@ -110,7 +111,7 @@ export class DetailsLanding extends Component {
                 }
                 {this.state.viewParticipants ?
                     <Grid.Column width={12}>
-                        <Participants participants={this.state.detail.participants}/>
+                        <Participants key={uuidv4()} participants={this.state.detail.participants} />
                     </Grid.Column> : null
                 }
             </Grid>
