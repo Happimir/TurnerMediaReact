@@ -1,4 +1,4 @@
-﻿import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Grid, Segment, Item } from 'semantic-ui-react';
 import { DetailsItem } from './detailsItem';
 import { Participants } from './participants/participants';
