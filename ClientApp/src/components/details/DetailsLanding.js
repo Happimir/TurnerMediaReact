@@ -1,7 +1,7 @@
-﻿import React, { Component } from 'react';
+﻿import React, { Component, Fragment } from 'react';
 import { Grid, Segment, Item } from 'semantic-ui-react';
 import { DetailsItem } from './detailsItem';
-import { Storylines } from './storylines/storylines';
+import { Participants } from './participants/participants';
 
 export class DetailsLanding extends Component {
     constructor(props) {
@@ -11,6 +11,7 @@ export class DetailsLanding extends Component {
             details: [],
             search: "",
             showDetail: false,
+            viewParticipants: false,
             detail: {}
         };
     }
@@ -24,6 +25,15 @@ export class DetailsLanding extends Component {
                     detail: data
                 });
             })
+    }
+
+    displayParticipants(event) {
+        let myDetail = this.state.details.find(x => x._id === event.target.id);
+        this.setState({
+            showDetail: false,
+            viewParticipants: true,
+            detail: myDetail
+        })
     }
 
     componentDidMount() {
@@ -40,7 +50,8 @@ export class DetailsLanding extends Component {
         var value = event.target.value.substr(0, 50);
         this.setState({
             search: value,
-            showDetail: false
+            showDetail: false,
+            viewParticipants: false
         });
     }
 
@@ -69,6 +80,7 @@ export class DetailsLanding extends Component {
                                         <Item.Meta>Year: {detail.releaseYear}</Item.Meta>
                                         <Item.Meta>Genres: {detail.keyGenres ? detail.keyGenres.join() : detail.genres.join()}</Item.Meta>
                                         <Item.Extra>
+                                            <button className="ui button modalButton" id={detail._id} onClick={this.displayParticipants.bind(this)}> View Participants</button>
                                             <button className="ui button detailsButton" id={detail._id} onClick={this.loadDetails.bind(this)}> Details</button>
                                         </Item.Extra>
                                     </Item.Content>
@@ -77,21 +89,30 @@ export class DetailsLanding extends Component {
                         </Item.Group>
                     </Segment>
                 </Grid.Column>
-            
-                <Grid.Column width={4} id="detailsArea">
-                    {this.state.showDetail ?
-                        <Segment clearing>
-                            <DetailsItem awards={this.state.detail.awards} />
-                            <DetailsItem othernames={this.state.detail.otherNames} />
-                        </Segment> : null}
-                </Grid.Column>
-                <Grid.Column width={4}>
-                    {this.state.showDetail ?
-                        <Segment clearing>
-                            <DetailsItem storylines={this.state.detail.storylines} />
-                    </Segment> : null}
-                </Grid.Column>
-
+                {this.state.showDetail ?
+                    <Fragment>
+                        <Grid.Column width={4} id="detailsArea">
+                            <Segment clearing>
+                                <DetailsItem awards={this.state.detail.awards} />
+                            </Segment>
+                        </Grid.Column>
+                        <Grid.Column width={4}>
+                            <Segment clearing>
+                                <DetailsItem storylines={this.state.detail.storylines} />
+                            </Segment>
+                        </Grid.Column>
+                        <Grid.Column width={4}>
+                            <Segment clearing>
+                                <DetailsItem othernames={this.state.detail.otherNames} />
+                            </Segment>
+                        </Grid.Column>
+                    </Fragment> : null
+                }
+                {this.state.viewParticipants ?
+                    <Grid.Column width={12}>
+                        <Participants participants={this.state.detail.participants}/>
+                    </Grid.Column> : null
+                }
             </Grid>
         )
     }

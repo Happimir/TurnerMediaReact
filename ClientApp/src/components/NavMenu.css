@@ -23,6 +23,13 @@ html {
     color: black !important;
 }
 
+.modalButton {
+    float: left !important;
+
+}
+
 .marginedGrid {
-    margin-left: 20px !important
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+     
 }
