@@ -17,10 +17,21 @@ export class DetailsLanding extends Component {
         };
     }
 
+    markAsSelected(target) {
+        let elements = document.querySelectorAll(".ui.clearing.segment .ui.divided.items .item.selected");
+        [].forEach.call(elements, function (element) {
+            element.classList.remove("selected");
+        });
+
+        target.classList.add("selected");
+    }
+
     loadDetails(event) {
+        let target = document.getElementById("item" + event.target.id);
         fetch("api/titles/gettitle/" + event.target.id)
             .then(response => response.json())
             .then(data => {
+                this.markAsSelected(target);
                 this.setState({
                     viewParticipants: false,
                     showDetail: true,
@@ -30,7 +41,9 @@ export class DetailsLanding extends Component {
     }
 
     displayParticipants(event) {
+        let target = document.getElementById("item" + event.target.id);
         let myDetail = this.state.details.find(x => x._id === event.target.id);
+        this.markAsSelected(target);
         this.setState({
             showDetail: false,
             viewParticipants: true,
@@ -76,7 +89,7 @@ export class DetailsLanding extends Component {
                     <Segment clearing>
                         <Item.Group divided>
                             {filtered.map(detail => (
-                                <Item key={detail._id}>
+                                <Item key={detail._id} id={"item" + detail._id}>
                                     <Item.Content>
                                         <Item.Header>{detail.titleName}</Item.Header>
                                         <Item.Meta>Year: {detail.releaseYear}</Item.Meta>
